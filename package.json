@@ -1,0 +1,19 @@
+{
+  "name": "gear",
+  "version": "0.1.0",
+  "description": "A FP library",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bravechen/gear.git"
+  },
+  "author": "Brave Chan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bravechen/gear/issues"
+  },
+  "homepage": "https://github.com/Bravechen/gear#readme"
+}
