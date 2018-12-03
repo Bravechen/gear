@@ -5,7 +5,7 @@ function someObj(list = {}, fn = noop, scope = null) {
   let index = 0;
   let len = keys.length;
   let result = false;
-  while(++index < len) {
+  while (++index < len) {
     let key = keys[index];
     result = fn.apply(scope, [list[key], key, list]);
     if (result) {

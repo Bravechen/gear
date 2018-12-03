@@ -6,27 +6,27 @@ import isNull from '../internal/isNull.js';
  * Either容器
  */
 class Either {
-
   /**
    * @public
    * @static
-   * 
+   *
    * 接受一个值并返回新的容器
    * @param {any} value [opational] 值
-   * 
+   *
    * @return {Right | Left} 新的容器
    */
   static of(value) {
     return isNoting(value)
       ? new Left(value)
-      : value.isLeft ? new Left(value._value)
-      : new Right(value);
+      : value.isLeft
+        ? new Left(value._value)
+        : new Right(value);
   }
 
   /**
    * @public
    * @static
-   * 
+   *
    * 返回一个承载错误信息的容器
    * @param {any} value [required] 错误值
    * @return {Left} 存放错误值的容器
@@ -38,9 +38,9 @@ class Either {
   /**
    * @public
    * @static
-   * 
+   *
    * 返回一个存放正确值的容器
-   * @param {any} value [required] 正确的值 
+   * @param {any} value [required] 正确的值
    */
   static right(value) {
     return new Right(value);
@@ -59,7 +59,7 @@ class Left {
    * @param {Function} fn [optional] 映射函数
    * 应用函数返回新的容器
    * 在错误容器中，不进行映射，直接返回新的错误容器
-   * 
+   *
    * @return {Left} 错误容器
    */
   map() {
@@ -77,7 +77,7 @@ class Left {
   /**
    * @public
    * 剥离容器外壳，返回其中真正的值
-   * @return {any} 
+   * @return {any}
    */
   join() {
     return this._value;
@@ -93,8 +93,10 @@ class Left {
     return isFunction(fn)
       ? fn(this._value)
       : Either.Left({
-        message: `Expect the orElse()\'s param is a function, not the ${isNull(fn) ? 'null': typeof fn}.`
-      });
+          message: `Expect the orElse()'s param is a function, not the ${
+            isNull(fn) ? 'null' : typeof fn
+          }.`
+        });
   }
 
   /**
@@ -117,27 +119,32 @@ class Right {
    * @public
    * @param {Function} fn [required] 映射函数
    * 应用函数返回新的容器
-   * 
+   *
    * @return {Left} 正确容器
    */
   map(fn) {
     return isFunction(fn)
       ? Either.of(fn(this._value))
       : Either.Left({
-        message: `Expect the map()\'s param is a function, not the ${isNull(fn) ? 'null': typeof fn}.`
-      });
+          message: `Expect the map()'s param is a function, not the ${
+            isNull(fn) ? 'null' : typeof fn
+          }.`
+        });
   }
 
   /**
    * @public
    * 剥离容器外壳，返回其中真正的值
-   * @return {any} 
+   * @return {any}
    */
   join() {
-    if (!this || !(this.isRight instanceof Right) && !(this._value instanceof Left)) {
+    if (
+      !this ||
+      (!(this.isRight instanceof Right) && !(this._value instanceof Left))
+    ) {
       return this;
     }
-    
+
     return this._value.join();
   }
 

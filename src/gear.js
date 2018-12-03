@@ -1,11 +1,12 @@
 /**
  * gear函数式编程库
- * 
+ *
  * @author Brave Chan on 2018
  * @version 0.1.0
  */
 //=========================================================
 import tempGear from './internal/tempGear.js';
+import { _ } from './internal/common';
 
 import alt from './operator/alt.js';
 import bind from './operator/bind.js';
@@ -48,7 +49,7 @@ chainableObj.identity = identity;
 chainableObj.value = value;
 
 function chain(data) {
-  if(!data) {
+  if (!data) {
     return;
   }
   let obj = createGear(data);
@@ -56,7 +57,10 @@ function chain(data) {
   return obj;
 }
 
-tempGear.__tempGear__ = tempGear.combineChainable(chainableObj, tempGear.creatTempGear());
+tempGear.__tempGear__ = tempGear.combineChainable(
+  chainableObj,
+  tempGear.creatTempGear()
+);
 
 function createGear(data) {
   let obj = Object.assign({}, tempGear.__tempGear__);
@@ -97,6 +101,38 @@ gear.Maybe = Maybe;
 gear.debounce = debounce;
 gear.throttle = throttle;
 gear.scheduler = scheduler;
+gear._ = _;
 
-
-export default gear;
+export {
+  gear,
+  _,
+  //========================
+  alt,
+  bind,
+  curry,
+  every,
+  filter,
+  fork,
+  identity,
+  map,
+  partial,
+  reduce,
+  reduceRight,
+  revers,
+  seq,
+  some,
+  tap,
+  value,
+  //========================
+  compose,
+  pipe,
+  //========================
+  Tuple,
+  Either,
+  IO,
+  Maybe,
+  //========================
+  debounce,
+  throttle,
+  scheduler
+};

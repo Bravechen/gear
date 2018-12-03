@@ -1,1 +1,1 @@
-export default (obj) => Object.prototype.toString.call(obj) === '[object Object]';
+export default obj => Object.prototype.toString.call(obj) === '[object Object]';

@@ -8,9 +8,11 @@ let reduce = function(list, fn, accumulator, scope) {
     return list;
   }
 
-  return isObject(list) ? reduceObj(list, fn, accumulator, scope) 
-    : isArray(list) ? reduceAry(list, fn, accumulator, scope) 
-    : list;
+  return isObject(list)
+    ? reduceObj(list, fn, accumulator, scope)
+    : isArray(list)
+      ? reduceAry(list, fn, accumulator, scope)
+      : list;
 };
 
 export default reduce;

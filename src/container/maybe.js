@@ -13,16 +13,16 @@ class Maybe {
   map(fn) {
     return isFunction(fn)
       ? isNothing(this._value)
-      ? Maybe.of(null)
-      : Maybe.of(fn(this._value))
+        ? Maybe.of(null)
+        : Maybe.of(fn(this._value))
       : Maybe.of(this._value);
   }
 
   join() {
     if (!(this._value instanceof Maybe)) {
-        return this;
+      return this;
     }
-    
+
     return this._value.join();
   }
 

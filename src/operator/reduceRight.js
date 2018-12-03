@@ -8,9 +8,11 @@ let reduceRight = function(list, fn, accumulator, scope) {
     return list;
   }
 
-  return isObject(list) ? reduceRightObj(list, fn, accumulator, scope) 
-    : isArray(list) ? reduceRightAry(list, fn, accumulator, scope) 
-    : list;
+  return isObject(list)
+    ? reduceRightObj(list, fn, accumulator, scope)
+    : isArray(list)
+      ? reduceRightAry(list, fn, accumulator, scope)
+      : list;
 };
 
 export default reduceRight;

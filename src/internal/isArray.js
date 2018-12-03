@@ -1,1 +1,1 @@
-export default (list) => Array.isArray(list);
+export default list => Array.isArray(list);

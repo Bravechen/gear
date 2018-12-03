@@ -8,7 +8,7 @@ function everyObj(list = {}, fn = noop, scope = null) {
   while (++index < len) {
     let key = keys[index];
     result = fn.apply(scope, [list[key], key, list]);
-    if(!result) {
+    if (!result) {
       return false;
     }
   }

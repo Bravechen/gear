@@ -6,7 +6,7 @@ function everyAry(list = [], fn = noop, scope = null) {
   let result = true;
   while (++index < len) {
     result = fn.apply(scope, [list[index], index, list]);
-    if(!result) {
+    if (!result) {
       return false;
     }
   }

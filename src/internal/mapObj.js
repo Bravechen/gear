@@ -5,7 +5,7 @@ function _mapObj(obj = {}, fn = noop, scope = null) {
   let len = keys.length;
   let index = -1;
   let result = {};
-  while (++index<len) {
+  while (++index < len) {
     let key = keys[index];
     result[key] = fn.apply(scope, [obj[key], key, obj]);
   }

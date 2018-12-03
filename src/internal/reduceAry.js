@@ -8,12 +8,12 @@ function reduceAry(list = [], fn = noop, accumulator, scope = null) {
   if (isNot(accumulator) && len > 0) {
     accumulator = list[++index];
   }
-  
+
   while (++index < len) {
     accumulator = fn.apply(scope, [accumulator, list[index], index, list]);
   }
 
-  return accumulator;  
+  return accumulator;
 }
 
 function reduceRightAry(list = [], fn = noop, accumulator, scope = null) {

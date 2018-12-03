@@ -1,7 +1,7 @@
 import isNull from '../internal/isNull.js';
 import isUndefined from '../internal/isUndefined.js';
 
-class _Tuple{
+class _Tuple {
   constructor(types, values) {
     let index = values.length;
 
@@ -17,7 +17,7 @@ class _Tuple{
       this[`_${index + 1}`] = checkType(types[index])(values[index]);
     }
 
-    Object.freeze(this); 
+    Object.freeze(this);
   }
 
   values() {
@@ -31,21 +31,25 @@ function checkType(Type) {
     return cache.get(Type);
   }
 
-  cache.set(Type, function(value){
-    return new (value.constructor)() instanceof Type ? value : void 0;
+  cache.set(Type, function(value) {
+    return new value.constructor() instanceof Type ? value : void 0;
   });
 
   return cache.get(Type);
 }
 
 function Tuple(...types) {
-  if (types.some(item => typeof item !== 'function' || item.prototype.constructor !== item)) {
+  if (
+    types.some(
+      item => typeof item !== 'function' || item.prototype.constructor !== item
+    )
+  ) {
     throw new TypeError('The parameter type of a tuple must be a constructor.');
   }
 
   return function(...values) {
     return new _Tuple(types, values);
-  }
+  };
 }
 
 export default Tuple;

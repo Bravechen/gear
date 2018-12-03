@@ -1,3 +1,5 @@
+import isFunction from '../internal/isFunction';
+
 class IO {
   constructor(fn) {
     if (!isFunction(fn)) {

@@ -4,13 +4,15 @@ import filterObj from '../internal/fliterObj.js';
 import filterAry from '../internal/filterAry.js';
 
 function filter(list, fn) {
-  if(!list || typeof fn !== 'function') {
+  if (!list || typeof fn !== 'function') {
     return list;
   }
 
-  return isObject(list) ? filterObj(list, fn) 
-    : isArray(list) ? filterAry(list, fn) 
-    : list;
+  return isObject(list)
+    ? filterObj(list, fn)
+    : isArray(list)
+      ? filterAry(list, fn)
+      : list;
 }
 
 export default filter;
